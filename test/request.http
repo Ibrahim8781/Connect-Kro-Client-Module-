@@ -1,0 +1,283 @@
+### Register a new client
+POST http://localhost:5000/api/auth/register
+Content-Type: application/json
+
+{
+  "name": "ahmed",
+  "email": "ahmed@gmail.com",
+  "password": "ahmed",
+  "role": "client"
+}
+
+### Login client
+POST http://localhost:5000/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "ahmed@gmail.com",
+  "password": "ahmed"
+}
+
+### Save Token
+# @token=<JWT_RECEIVED_FROM_LOGIN>
+
+### Get Saved Gigs
+GET http://localhost:5000/api/clients/saved-gigs
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3NTQzNjAzZDZlMGJmODdiOGMwZDgxYyIsImlhdCI6MTczMzYxNzk0OCwiZXhwIjoxNzM2MjA5OTQ4fQ.vXoX1J0imoAhKBlfJcgkX7hmXv1k2btoqBY9dLeCL3k
+
+### Save a Gig
+POST http://localhost:5000/api/clients/saved-gigs
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3NTQzNjAzZDZlMGJmODdiOGMwZDgxYyIsImlhdCI6MTczMzYxNzk0OCwiZXhwIjoxNzM2MjA5OTQ4fQ.vXoX1J0imoAhKBlfJcgkX7hmXv1k2btoqBY9dLeCL3k
+Content-Type: application/json
+
+{
+  "gigId": "12345abcdef"
+}
+
+### Remove a Gig
+DELETE http://localhost:5000/api/clients/saved-gigs/12345abcdef
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3NTQzNjAzZDZlMGJmODdiOGMwZDgxYyIsImlhdCI6MTczMzYxNzk0OCwiZXhwIjoxNzM2MjA5OTQ4fQ.vXoX1J0imoAhKBlfJcgkX7hmXv1k2btoqBY9dLeCL3k
+
+### Get Orders
+GET http://localhost:5000/api/clients/orders
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3NTQzNjAzZDZlMGJmODdiOGMwZDgxYyIsImlhdCI6MTczMzU3MjA5OSwiZXhwIjoxNzM2MTY0MDk5fQ.P9b9HBPwm2O2YwzQlQ6oDwnPH5pZ0eiKXDeYjAWi-Wg
+
+### Place Custom Order
+POST http://localhost:5000/api/orders/custom
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3NTQzNjAzZDZlMGJmODdiOGMwZDgxYyIsImlhdCI6MTczMzYxNzk0OCwiZXhwIjoxNzM2MjA5OTQ4fQ.vXoX1J0imoAhKBlfJcgkX7hmXv1k2btoqBY9dLeCL3k
+Content-Type: application/json
+
+{
+  "gigId": "12345abcdef",
+  "message": "Looking for additional customization.",
+  "price": 100
+}
+
+### Add a Review
+POST http://localhost:5000/api/reviews
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3NTQzNjAzZDZlMGJmODdiOGMwZDgxYyIsImlhdCI6MTczMzYxNzk0OCwiZXhwIjoxNzM2MjA5OTQ4fQ.vXoX1J0imoAhKBlfJcgkX7hmXv1k2btoqBY9dLeCL3k
+Content-Type: application/json
+
+{
+  "gigId": "12345abcdef",
+  "rating": 5,
+  "comment": "Amazing service!"
+}
+
+### Edit a Review
+PUT http://localhost:5000/api/reviews/67890ghijk
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3NTQzNjAzZDZlMGJmODdiOGMwZDgxYyIsImlhdCI6MTczMzYxNzk0OCwiZXhwIjoxNzM2MjA5OTQ4fQ.vXoX1J0imoAhKBlfJcgkX7hmXv1k2btoqBY9dLeCL3k
+Content-Type: application/json
+
+{
+  "rating": 4,
+  "comment": "Updated the review after clarifications."
+}
+
+### Create Collaboration
+POST http://localhost:5000/api/collaborations
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3NTQzNjAzZDZlMGJmODdiOGMwZDgxYyIsImlhdCI6MTczMzYxNzk0OCwiZXhwIjoxNzM2MjA5OTQ4fQ.vXoX1J0imoAhKBlfJcgkX7hmXv1k2btoqBY9dLeCL3k
+Content-Type: application/json
+
+{
+  "orderId": "6480e76546b58e6a5ef73456", // Example valid ObjectId
+  "message": "Here is the first draft of the project.",
+  "attachments": ["file1.pdf", "file2.doc"]
+}
+
+
+### Get Notifications
+GET http://localhost:5000/api/notifications
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3NTQzNjAzZDZlMGJmODdiOGMwZDgxYyIsImlhdCI6MTczMzYxNzk0OCwiZXhwIjoxNzM2MjA5OTQ4fQ.vXoX1J0imoAhKBlfJcgkX7hmXv1k2btoqBY9dLeCL3k
+
+### Mark Notification as Read
+PUT http://localhost:5000/api/notifications/notificationId123
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3NTQzNjAzZDZlMGJmODdiOGMwZDgxYyIsImlhdCI6MTczMzYxNzk0OCwiZXhwIjoxNzM2MjA5OTQ4fQ.vXoX1J0imoAhKBlfJcgkX7hmXv1k2btoqBY9dLeCL3k
+
+### Fetch Notifications
+GET http://localhost:5000/api/notifications
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3NTQzNjAzZDZlMGJmODdiOGMwZDgxYyIsImlhdCI6MTczMzYxNzk0OCwiZXhwIjoxNzM2MjA5OTQ4fQ.vXoX1J0imoAhKBlfJcgkX7hmXv1k2btoqBY9dLeCL3k
+
+### Mark Notification as Read
+PUT http://localhost:5000/api/notifications/<notification_id>
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3NTQzNjAzZDZlMGJmODdiOGMwZDgxYyIsImlhdCI6MTczMzYxNzk0OCwiZXhwIjoxNzM2MjA5OTQ4fQ.vXoX1J0imoAhKBlfJcgkX7hmXv1k2btoqBY9dLeCL3k
+
+### Fetch gigs by list
+GET http://localhost:5000/api/saved-gigs/General
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3NTQzNjAzZDZlMGJmODdiOGMwZDgxYyIsImlhdCI6MTczMzYxNzk0OCwiZXhwIjoxNzM2MjA5OTQ4fQ.vXoX1J0imoAhKBlfJcgkX7hmXv1k2btoqBY9dLeCL3k
+
+### Create a new custom list
+POST http://localhost:5000/api/saved-gigs/lists
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3NTQzNjAzZDZlMGJmODdiOGMwZDgxYyIsImlhdCI6MTczMzYxNzk0OCwiZXhwIjoxNzM2MjA5OTQ4fQ.vXoX1J0imoAhKBlfJcgkX7hmXv1k2btoqBY9dLeCL3k
+Content-Type: application/json
+
+{
+  "listName": "My Favorite Gigs"
+}
+
+### Rename a custom list
+PUT http://localhost:5000/api/saved-gigs/lists/My Favorite Gigs
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3NTQzNjAzZDZlMGJmODdiOGMwZDgxYyIsImlhdCI6MTczMzYxNzk0OCwiZXhwIjoxNzM2MjA5OTQ4fQ.vXoX1J0imoAhKBlfJcgkX7hmXv1k2btoqBY9dLeCL3k
+Content-Type: application/json
+
+{
+  "newName": "Top Picks"
+}
+
+### Delete a custom list
+DELETE http://localhost:5000/api/saved-gigs/lists/Top Picks
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3NTQzNjAzZDZlMGJmODdiOGMwZDgxYyIsImlhdCI6MTczMzYxNzk0OCwiZXhwIjoxNzM2MjA5OTQ4fQ.vXoX1J0imoAhKBlfJcgkX7hmXv1k2btoqBY9dLeCL3k
+
+### Save a gig to a list
+POST http://localhost:5000/api/saved-gigs/lists/General
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3NTQzNjAzZDZlMGJmODdiOGMwZDgxYyIsImlhdCI6MTczMzYxNzk0OCwiZXhwIjoxNzM2MjA5OTQ4fQ.vXoX1J0imoAhKBlfJcgkX7hmXv1k2btoqBY9dLeCL3k
+Content-Type: application/json
+
+{
+  "gigId": "648dbedf5e1b2b6f3e98d1a2"
+}
+
+### Remove a gig from a list
+DELETE http://localhost:5000/api/saved-gigs/648dbedf5e1b2b6f3e98d1a2
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3NTQzNjAzZDZlMGJmODdiOGMwZDgxYyIsImlhdCI6MTczMzYxNzk0OCwiZXhwIjoxNzM2MjA5OTQ4fQ.vXoX1J0imoAhKBlfJcgkX7hmXv1k2btoqBY9dLeCL3k
+
+### Retrieve all orders
+GET http://localhost:5000/api/orders
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3NTQzNjAzZDZlMGJmODdiOGMwZDgxYyIsImlhdCI6MTczMzYxNzk0OCwiZXhwIjoxNzM2MjA5OTQ4fQ.vXoX1J0imoAhKBlfJcgkX7hmXv1k2btoqBY9dLeCL3k
+
+### Retrieve orders filtered by status
+GET http://localhost:5000/api/orders?status=completed
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3NTQzNjAzZDZlMGJmODdiOGMwZDgxYyIsImlhdCI6MTczMzYxNzk0OCwiZXhwIjoxNzM2MjA5OTQ4fQ.vXoX1J0imoAhKBlfJcgkX7hmXv1k2btoqBY9dLeCL3k
+
+### Place a custom order
+POST http://localhost:5000/api/orders/custom
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3NTQzNjAzZDZlMGJmODdiOGMwZDgxYyIsImlhdCI6MTczMzYxNzk0OCwiZXhwIjoxNzM2MjA5OTQ4fQ.vXoX1J0imoAhKBlfJcgkX7hmXv1k2btoqBY9dLeCL3k
+Content-Type: application/json
+
+{
+  "gigId": "648dbedf5e1b2b6f3e98d1a2",
+  "amount": 150,
+  "paymentMethod": "paypal"
+}
+
+### Add a new payment method
+POST http://localhost:5000/api/payments
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3NTQzNjAzZDZlMGJmODdiOGMwZDgxYyIsImlhdCI6MTczMzYxNzk0OCwiZXhwIjoxNzM2MjA5OTQ4fQ.vXoX1J0imoAhKBlfJcgkX7hmXv1k2btoqBY9dLeCL3k
+Content-Type: application/json
+
+{
+  "type": "credit_card",
+  "details": {
+    "cardNumber": "4111111111111111",
+    "expiryDate": "12/24"
+  },
+  "isDefault": true
+}
+
+### Update a payment method
+# PUT http://localhost:5000/api/payments/{{paymentMethodId}}
+# Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3NTQzNjAzZDZlMGJmODdiOGMwZDgxYyIsImlhdCI6MTczMzYxNzk0OCwiZXhwIjoxNzM2MjA5OTQ4fQ.vXoX1J0imoAhKBlfJcgkX7hmXv1k2btoqBY9dLeCL3k
+# Content-Type: application/json
+
+# {
+#   "details": {
+#     "cardNumber": "4222222222222222",
+#     "expiryDate": "01/25"
+#   },
+#   "isDefault": true
+# }
+
+# ### Delete a payment method
+# DELETE http://localhost:5000/api/payments/{{paymentMethodId}}
+# Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3NTQzNjAzZDZlMGJmODdiOGMwZDgxYyIsImlhdCI6MTczMzYxNzk0OCwiZXhwIjoxNzM2MjA5OTQ4fQ.vXoX1J0imoAhKBlfJcgkX7hmXv1k2btoqBY9dLeCL3k
+
+### Get payment history
+GET http://localhost:5000/api/payments/history
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3NTQzNjAzZDZlMGJmODdiOGMwZDgxYyIsImlhdCI6MTczMzYxNzk0OCwiZXhwIjoxNzM2MjA5OTQ4fQ.vXoX1J0imoAhKBlfJcgkX7hmXv1k2btoqBY9dLeCL3k
+
+### Create a new collaboration
+POST http://localhost:5000/api/collaborations
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3NTQzNjAzZDZlMGJmODdiOGMwZDgxYyIsImlhdCI6MTczMzYxNzk0OCwiZXhwIjoxNzM2MjA5OTQ4fQ.vXoX1J0imoAhKBlfJcgkX7hmXv1k2btoqBY9dLeCL3k
+Content-Type: application/json
+
+{
+  "orderId": "3f4e5d6f7g8h9i0j",
+  "message": "This is a new collaboration message.",
+  "attachments": ["https://example.com/file1.png"]
+}
+
+### Add a milestone
+POST http://localhost:5000/api/collaborations//milestones
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3NTQzNjAzZDZlMGJmODdiOGMwZDgxYyIsImlhdCI6MTczMzYxNzk0OCwiZXhwIjoxNzM2MjA5OTQ4fQ.vXoX1J0imoAhKBlfJcgkX7hmXv1k2btoqBY9dLeCL3k
+Content-Type: application/json
+
+{
+  "title": "First milestone",
+  "dueDate": "2024-12-31"
+}
+
+### Update a milestone status
+PUT http://localhost:5000/api/collaborations/{{64f7d2b6b7323b0012345678}}/milestones/{{64f7d2b6b7323b0012345678}}
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3NTQzNjAzZDZlMGJmODdiOGMwZDgxYyIsImlhdCI6MTczMzYxNzk0OCwiZXhwIjoxNzM2MjA5OTQ4fQ.vXoX1J0imoAhKBlfJcgkX7hmXv1k2btoqBY9dLeCL3k
+Content-Type: application/json
+
+{
+  "status": "completed"
+}
+
+### Retrieve milestones
+GET http://localhost:5000/api/collaborations/{{64f7d2b6b7323b0012345678}}/milestones
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3NTQzNjAzZDZlMGJmODdiOGMwZDgxYyIsImlhdCI6MTczMzYxNzk0OCwiZXhwIjoxNzM2MjA5OTQ4fQ.vXoX1J0imoAhKBlfJcgkX7hmXv1k2btoqBY9dLeCL3k
+
+### Add a review
+POST http://localhost:5000/api/reviews
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3NTQzNjAzZDZlMGJmODdiOGMwZDgxYyIsImlhdCI6MTczMzYxNzk0OCwiZXhwIjoxNzM2MjA5OTQ4fQ.vXoX1J0imoAhKBlfJcgkX7hmXv1k2btoqBY9dLeCL3k
+Content-Type: application/json
+
+{
+  "gigId": "3123f4e5d6f7g8h9i0j",
+  "rating": 5,
+  "comment": "Great service!"
+}
+
+### Edit a review within 48 hours
+PUT http://localhost:5000/api/reviews/{{reviewId}}
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3NTQzNjAzZDZlMGJmODdiOGMwZDgxYyIsImlhdCI6MTczMzYxNzk0OCwiZXhwIjoxNzM2MjA5OTQ4fQ.vXoX1J0imoAhKBlfJcgkX7hmXv1k2btoqBY9dLeCL3k
+Content-Type: application/json
+
+{
+  "rating": 4,
+  "comment": "Updated comment: Excellent service!"
+}
+
+### Edit a review after 48 hours (Should fail)
+PUT http://localhost:5000/api/reviews/{{reviewId}}
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3NTQzNjAzZDZlMGJmODdiOGMwZDgxYyIsImlhdCI6MTczMzYxNzk0OCwiZXhwIjoxNzM2MjA5OTQ4fQ.vXoX1J0imoAhKBlfJcgkX7hmXv1k2btoqBY9dLeCL3k
+Content-Type: application/json
+
+{
+  "rating": 3,
+  "comment": "Updated comment: Late delivery."
+}
+
+### Get all reviews by a client
+GET http://localhost:5000/api/reviews
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3NTQzNjAzZDZlMGJmODdiOGMwZDgxYyIsImlhdCI6MTczMzYxNzk0OCwiZXhwIjoxNzM2MjA5OTQ4fQ.vXoX1J0imoAhKBlfJcgkX7hmXv1k2btoqBY9dLeCL3k
+
+### Fetch notifications (default: page 1, 10 per page)
+GET http://localhost:5000/api/notifications
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3NTQzNjAzZDZlMGJmODdiOGMwZDgxYyIsImlhdCI6MTczMzYxNzk0OCwiZXhwIjoxNzM2MjA5OTQ4fQ.vXoX1J0imoAhKBlfJcgkX7hmXv1k2btoqBY9dLeCL3k
+
+### Fetch notifications with pagination (page 2, 5 per page)
+GET http://localhost:5000/api/notifications?page=2&limit=5
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3NTQzNjAzZDZlMGJmODdiOGMwZDgxYyIsImlhdCI6MTczMzYxNzk0OCwiZXhwIjoxNzM2MjA5OTQ4fQ.vXoX1J0imoAhKBlfJcgkX7hmXv1k2btoqBY9dLeCL3k
+
+### Mark a single notification as read
+PUT http://localhost:5000/api/notifications/{{notificationId}}
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3NTQzNjAzZDZlMGJmODdiOGMwZDgxYyIsImlhdCI6MTczMzYxNzk0OCwiZXhwIjoxNzM2MjA5OTQ4fQ.vXoX1J0imoAhKBlfJcgkX7hmXv1k2btoqBY9dLeCL3k
+Content-Type: application/json
+
+### Mark all notifications as read
+PUT http://localhost:5000/api/notifications/mark-all
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3NTQzNjAzZDZlMGJmODdiOGMwZDgxYyIsImlhdCI6MTczMzYxNzk0OCwiZXhwIjoxNzM2MjA5OTQ4fQ.vXoX1J0imoAhKBlfJcgkX7hmXv1k2btoqBY9dLeCL3k
+Content-Type: application/json
