@@ -1,7 +1,10 @@
-// controllers/reviewController.js
+const axios = require('axios');
 const asyncHandler = require('express-async-handler');
 const Review = require('../models/reviewSchema');
 const Gig = require('../models/gigSchema');
+
+// Add the Gemini API Key
+const GEMINI_API_KEY = process.env.GEMINI_API_KEY; // Add this key to your .env file
 
 // @desc Add a review for a gig
 // @route POST /api/reviews
@@ -15,11 +18,31 @@ const addReview = asyncHandler(async (req, res) => {
     throw new Error('Gig not found');
   }
 
+  // Call Gemini API for sentiment analysis
+  let sentiment = 'neutral'; // Default sentiment
+  try {
+    const response = await axios.post(
+      'https://api.gemini.com/v1/sentiment',
+      { text: comment },
+      {
+        headers: {
+          Authorization: `Bearer ${GEMINI_API_KEY}`,
+          'Content-Type': 'application/json',
+        },
+      }
+    );
+    sentiment = response.data.sentiment || sentiment; // Use the API result if available
+  } catch (error) {
+    console.error('Gemini API error:', error.message); // Log the error but don't block review creation
+  }
+
+  // Create the review with the sentiment
   const review = new Review({
     gig: gigId,
     client: req.user.id,
     rating,
     comment,
+    sentiment, // Save the sentiment analysis result
   });
 
   await review.save();
@@ -66,12 +89,15 @@ const editReview = asyncHandler(async (req, res) => {
   res.json(review);
 });
 
+
 // @desc Get all reviews by a client
 // @route GET /api/reviews
 // @access Private
 const getClientReviews = asyncHandler(async (req, res) => {
-  const reviews = await Review.find({ client: req.user.id }).populate('gig');
+  const reviews = await Review.find({ client: req.user.id })
+    .populate('gig')
+    .select('gig rating comment sentiment createdAt'); // Include sentiment in the response
   res.json(reviews);
 });
 
-module.exports = { addReview, editReview, getClientReviews };
+module.exports = { addReview , editReview, getClientReviews };

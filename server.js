@@ -14,7 +14,6 @@ const { errorHandler } = require('./middleware/errorMiddleware');
 const paymentRoutes = require('./routes/paymentRoutes');
 
 
-
 dotenv.config();
 connectDB();
 

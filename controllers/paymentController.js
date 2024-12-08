@@ -62,7 +62,9 @@ const deletePaymentMethod = asyncHandler(async (req, res) => {
         throw new Error('Payment method not found');
     }
 
-    await paymentMethod.remove();
+    // Use deleteOne instead of remove
+    await PaymentMethod.deleteOne({ _id: paymentMethod._id });
+
     res.status(200).json({ message: 'Payment method removed' });
 });
 
@@ -76,6 +78,8 @@ const getPaymentHistory = asyncHandler(async (req, res) => {
 
     res.status(200).json(orders);
 });
+
+
 
 module.exports = {
     addPaymentMethod,
